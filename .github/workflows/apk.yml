@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -o android-project.zip -d proje
+        with:
+          fetch-depth: 0
+      - name: En son yüklenen zip'i aç
+        run: |
+          ZIP=$(git log -1 --diff-filter=AM --name-only --pretty=format: -- '*.zip' | grep -v '^$' | tail -n 1)
+          echo "Kullanılan zip: $ZIP"
+          unzip -o "$ZIP" -d proje
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
