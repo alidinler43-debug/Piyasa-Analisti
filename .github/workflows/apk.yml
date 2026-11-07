@@ -24,7 +24,7 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.9'
+          gradle-version: '8.14.4'
       - run: gradle assembleRelease --no-daemon -PvCode=${{ github.run_number }}
         working-directory: proje
       - run: cp proje/app/build/outputs/apk/release/app-release.apk PiyasaAnalisti.apk
